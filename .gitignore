@@ -1,0 +1,6 @@
+# ChromaDB
+chromadb_storage/
+
+# macOS system files
+.DS_Store
+._*

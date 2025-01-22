@@ -1,0 +1,10 @@
+streamlit
+langchain
+langchain-community
+beautifulsoup4
+requests
+pandas
+openpyxl
+chromadb
+langchain-openai
+langchain-ollama

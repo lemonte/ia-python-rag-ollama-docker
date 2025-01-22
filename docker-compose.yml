@@ -1,0 +1,31 @@
+
+services:
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    entrypoint: bash -c '(sleep 2 ; ollama pull llama3.2) & exec ollama serve'
+    ports:
+      - "11434:11434" 
+    networks:
+      - internal_net
+
+
+  # fastapi-service:
+  #   container_name: fastapi_service
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5050:5050" 
+  #   restart: always
+  #   networks:
+  #     - internal_net
+  #   depends_on:
+  #     - ollama
+  #     - chromadb
+
+
+
+networks:
+  internal_net:
+    driver: bridge
