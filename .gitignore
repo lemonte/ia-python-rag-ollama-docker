@@ -4,3 +4,5 @@ chromadb_storage/
 # macOS system files
 .DS_Store
 ._*
+.txt
+.xlsx
