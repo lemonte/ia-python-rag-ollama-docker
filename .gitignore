@@ -6,3 +6,4 @@ chromadb_storage/
 ._*
 .txt
 .xlsx
+.venv
