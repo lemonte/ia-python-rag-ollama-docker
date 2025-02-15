@@ -1,5 +1,5 @@
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pip install langchain-community
+pip install langchain_chroma
 streamlit run main2.py

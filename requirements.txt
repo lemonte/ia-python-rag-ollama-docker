@@ -6,5 +6,7 @@ requests
 pandas
 openpyxl
 chromadb
-langchain-openai
+langchain_chroma
 langchain-ollama
+PyPDF2
+markdown

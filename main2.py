@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import requests
 import os
 import pickle
+import subprocess
 import pandas as pd
 import time
 from datetime import datetime
@@ -508,6 +509,7 @@ def initialize_chromadb(documents, model_name, chunk_size, chunk_overlap):
 
 def create_retrieval_chain(vectorstore, model_name, search_kwargs):
     llm = OllamaLLM(model=model_name)
+    
     retriever = vectorstore.as_retriever(search_kwargs=search_kwargs)
     
     template = """
@@ -535,12 +537,24 @@ def create_retrieval_chain(vectorstore, model_name, search_kwargs):
     )
     return qa_chain
 
+
+def loadModels():
+    model_options = ["llama3.2", "deepseek-r1", "phi3"]
+    # try:
+        # response = subprocess.run(["ollama", "list"])
+        # response.raise_for_status()
+        # print(response.json())
+    # except Exception as e:
+    #     print(e)
+    return model_options
+
+
 # Aplicação Streamlit
 def streamlit_app():
     st.title("🤖 Assistente de Documentação com RAG")
     
     salvar_metricas_inicializacao(time.time())
-    model_options = ["llama3.2"]
+    model_options = loadModels()
     selected_model = st.sidebar.selectbox("Modelo:", model_options, index=0)
     
     chunk_size = st.sidebar.slider("Tamanho do Chunk:", min_value=100, max_value=2000, value=1000, step=100)
