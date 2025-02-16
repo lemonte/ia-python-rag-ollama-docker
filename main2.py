@@ -8,8 +8,6 @@ from langchain.prompts import PromptTemplate
 from bs4 import BeautifulSoup
 import requests
 import os
-import pickle
-import subprocess
 import pandas as pd
 import time
 from datetime import datetime
@@ -539,11 +537,14 @@ def create_retrieval_chain(vectorstore, model_name, search_kwargs):
 
 
 def loadModels():
-    model_options = ["llama3.2", "deepseek-r1", "phi3"]
+    # model_options = [ "llama3.2","llama3.1:405b", "llama3:70b","mistral", "deepseek-r1", "phi3", "neural-chat", "solar", "moondream",  "deepseek-r1:671b"]
+    
+    model_options = ["moondream"]
     # try:
-        # response = subprocess.run(["ollama", "list"])
-        # response.raise_for_status()
-        # print(response.json())
+    #     response = subprocess.run(["ollama", "list"], capture_output=True, text=True, check=True)
+    #     output = response.stdout.strip()
+    #     models = output.splitlines() 
+    #     print(response.json())
     # except Exception as e:
     #     print(e)
     return model_options
@@ -754,7 +755,7 @@ def streamlit_app():
     if st.sidebar.button("Executar Teste Automático"):
         qa_chain = create_retrieval_chain(st.session_state.vectorstore, selected_model, search_kwargs={"k": k_documents})
         resultados = executar_teste_automatico(qa_chain, selected_model, k_documents, chunk_size, chunk_overlap)
-        # st.write(resultados)
+        st.write(resultados)
 
 if __name__ == "__main__":
     streamlit_app()

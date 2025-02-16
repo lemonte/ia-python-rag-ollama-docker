@@ -1,6 +1,6 @@
 
 services:
-  ollama:
+  ollama: 
     container_name: ollama
     image: ollama/ollama
     entrypoint: bash -c '(sleep 2 ; ollama pull llama3.2) & exec ollama serve'
